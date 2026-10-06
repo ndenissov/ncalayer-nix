@@ -2,6 +2,8 @@
 
 The Nix Flake providing **NCALayer** (the digital signature EDS client for Kazakhstan government portals).
 
+> **Note:** You can support adding this package directly to nixpkgs by leaving a 👍 reaction on the PR **https://github.com/NixOS/nixpkgs/pull/540015**
+
 ## Quick Run (Without Installation)
 
 Run directly using `nix run`:

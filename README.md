@@ -61,3 +61,23 @@ nix run github:ndenissov/ncalayer-nix -- --bundle-manager
 ```
 
 Or via Home Manager (`home.packages = [ ncalayer.packages.${pkgs.system}.default ];`).
+
+## Adding to NixOS (Without Flakes)
+
+If you are not using Nix Flakes, you can import the package using `fetchTarball` in your `configuration.nix`:
+
+```nix
+{ pkgs, ... }:
+
+let
+  ncalayer = import (builtins.fetchTarball "https://github.com/ndenissov/ncalayer-nix/archive/main.tar.gz") { inherit pkgs; };
+in
+{
+  # Required for hardware crypto-tokens (e.g., Kaztoken)
+  services.pcscd.enable = true;
+
+  environment.systemPackages = [
+    ncalayer
+  ];
+}
+```
